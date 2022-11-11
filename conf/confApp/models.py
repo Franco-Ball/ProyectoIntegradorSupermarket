@@ -65,7 +65,7 @@ class Cajero(models.Models):
     )
 
     telefono = models.CharField(max_length = 20, default="3513897259")
-    ingresoEmpresa = models.DateField(default= "2022-09-06")
+    ingresoEmpresa = models.DateFielddeadefault= ("2022-09-06")
     email = models.CharField(default="mailfalso@gmail.com")
     listaAsignacion = models.ForeignKey(
         Asignaciones,
