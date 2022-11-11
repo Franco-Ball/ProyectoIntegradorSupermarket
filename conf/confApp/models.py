@@ -2,27 +2,27 @@ from django.db import models
 
 class Turnos(models.Model):
     detalle = models.CharField(max_length=30)
-    horaInicio = models.IntegerField(max_length=2, default=8)
-    horaFin = models.IntegerField(max_length=2, default=20)
+    horaInicio = models.IntegerField( default=8)
+    horaFin = models.IntegerField( default=20)
 
 class Direcciones(models.Model):
     calle = models.CharField(max_length=30, default="Calle")
-    altura = models.IntegerField(max_length=5, default=12345)
+    altura = models.IntegerField( default=12345)
     barrio = models.CharField(max_length=70, default="Barrio")
     provincia = models.CharField(max_length=30, default="Provincia")
 
 class Articulos(models.Model):
-    codigo = models.IntegerField(max_length=30, default=123456)
-    stock = models.IntegerField(max_length=30, default=1)
+    codigo = models.IntegerField( default=123456)
+    stock = models.IntegerField( default=1)
     nombre = models.CharField(max_length=50, default="Articulo")
     descripcion = models.CharField(max_length=200, default="Descripcion")
-    precio = models.IntegerField(max_length=30, default=100)
+    precio = models.IntegerField( default=100)
     
 class detalleVentas(models.Model):
-    numVenta = models.IntegerField(max_length=30, default=1234)
-    numArticulo = models.IntegerField(max_length=30, default=1234)
-    precioUnidad = models.IntegerField(max_length=30, default=1234)
-    cantidad = models.IntegerField(max_length=30, default=1234)
+    numVenta = models.IntegerField( default=1234)
+    numArticulo = models.IntegerField( default=1234)
+    precioUnidad = models.IntegerField( default=1234)
+    cantidad = models.IntegerField( default=1234)
 
 class Ventas(models.Model):
     fecha = models.DateField(default= "2022-09-06")
@@ -66,7 +66,7 @@ class Cajero(models.Model):
 
     telefono = models.CharField(max_length = 20, default="3513897259")
     ingresoEmpresa = models.DateFielddeadefault= ("2022-09-06")
-    email = models.CharField(default="mailfalso@gmail.com")
+    email = models.CharField(max_length = 40, default="mailfalso@gmail.com")
     listaAsignacion = models.ForeignKey(
         Asignaciones,
         on_delete=models.CASCADE, default=1
