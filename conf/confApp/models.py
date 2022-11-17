@@ -11,18 +11,24 @@ class Direcciones(models.Model):
     barrio = models.CharField(max_length=70, default="Barrio")
     provincia = models.CharField(max_length=30, default="Provincia")
 
-class Articulos(models.Model):
-    codigo = models.IntegerField( default=123456)
-    stock = models.IntegerField( default=1)
-    nombre = models.CharField(max_length=50, default="Articulo")
-    descripcion = models.CharField(max_length=200, default="Descripcion")
-    precio = models.IntegerField( default=100)
+
     
 class detalleVentas(models.Model):
     numVenta = models.IntegerField( default=1234)
     numArticulo = models.IntegerField( default=1234)
     precioUnidad = models.IntegerField( default=1234)
     cantidad = models.IntegerField( default=1234)
+    
+class Articulos(models.Model):
+    codigo = models.IntegerField( default=123456)
+    stock = models.IntegerField( default=1)
+    nombre = models.CharField(max_length=50, default="Articulo")
+    descripcion = models.CharField(max_length=200, default="Descripcion")
+    precio = models.IntegerField( default=100)
+    listaDetalleVenta = models.ForeignKey(
+        detalleVentas,
+        on_delete=models.CASCADE, default=1
+    )
 
 class Ventas(models.Model):
     fecha = models.DateField(default= "2022-09-06")
@@ -48,9 +54,12 @@ class Cajas(models.Model):
 
 class Sucursal(models.Model):
     telefono = models.CharField(max_length = 20, default="3513897259")
-    direccion = models.CharField(max_length = 50, default="Direccion")
     listaDeCaja = models.ForeignKey(
         Cajas,
+        on_delete=models.CASCADE, default=1
+    )
+    direccion = models.ForeignKey(
+        Direcciones,
         on_delete=models.CASCADE, default=1
     )
 
