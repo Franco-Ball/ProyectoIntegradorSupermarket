@@ -4,3 +4,6 @@ from django.shortcuts import render
 def home_screen_view(request):
 
     return render(request, "base.html")
+
+def signin_screen_view(request):
+    return render(request, "signin.html")
