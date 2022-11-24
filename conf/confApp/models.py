@@ -5,6 +5,11 @@ class Turnos(models.Model):
     horaInicio = models.IntegerField( default=8)
     horaFin = models.IntegerField( default=20)
 
+    def __str__(self):
+        return f"{self.horaInicio}, {self.horaFin}"
+    class Meta:
+        ordering = ("horaInicio", "horaFin")
+
 class Direcciones(models.Model):
     calle = models.CharField(max_length=30, default="Calle")
     altura = models.IntegerField( default=12345)
