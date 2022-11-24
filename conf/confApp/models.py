@@ -16,13 +16,17 @@ class Direcciones(models.Model):
     barrio = models.CharField(max_length=70, default="Barrio")
     provincia = models.CharField(max_length=30, default="Provincia")
 
-
+    def __str__(self):
+        return f"{self.calle}, {self.altura}"
     
 class detalleVentas(models.Model):
     numVenta = models.IntegerField( default=1234)
     numArticulo = models.IntegerField( default=1234)
     precioUnidad = models.IntegerField( default=1234)
     cantidad = models.IntegerField( default=1234)
+
+    def __str__(self):
+        return f"{self.precioUnidad}, {self.cantidad}"
     
 class Articulos(models.Model):
     codigo = models.IntegerField( default=123456)
@@ -35,6 +39,9 @@ class Articulos(models.Model):
         on_delete=models.CASCADE, default=1
     )
 
+    def __str__(self):
+        return f"{self.stock}, {self.nombre}, {self.descripcion}, {self.precio}"
+
 class Ventas(models.Model):
     fecha = models.DateField(default= "2022-09-06")
     listaDetalleVenta = models.ForeignKey(
@@ -42,6 +49,9 @@ class Ventas(models.Model):
         on_delete=models.CASCADE, default=1
     )
 	
+    def __str__(self):
+        return f"{self.fecha}, {self.listaDetalleVenta}"
+        
 class Asignaciones(models.Model):
     fechaInicio = models.DateField(default= "2022-09-06")
     fechaFin = models.DateField(default= "2022-09-06")
@@ -49,6 +59,9 @@ class Asignaciones(models.Model):
         Ventas,
         on_delete=models.CASCADE, default=1
     )
+
+    def __str__(self):
+        return f"{self.fechaInicio}, {self.fechaFin}"
 	
 class Cajas(models.Model):
     estado = models.BooleanField(default=True)
@@ -56,6 +69,8 @@ class Cajas(models.Model):
         Asignaciones,
         on_delete=models.CASCADE, default=1
     )
+    def __str__(self):
+        return f"{self.estado}, {self.listaDeAsignacion}"
 
 class Sucursal(models.Model):
     telefono = models.CharField(max_length = 20, default="3513897259")
@@ -67,6 +82,8 @@ class Sucursal(models.Model):
         Direcciones,
         on_delete=models.CASCADE, default=1
     )
+    def __str__(self):
+        return f"{self.direccion}"
 
 class Cajero(models.Model):
     dni = models.CharField(max_length = 8, default="46037183")
@@ -93,3 +110,5 @@ class Cajero(models.Model):
         Sucursal,
         on_delete=models.CASCADE, default=1
     )
+    def __str__(self):
+        return f"{self.dni}, {self.nombre}, {self.apellido}"
