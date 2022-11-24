@@ -20,7 +20,8 @@ from django.urls import path, include
 
 from confApp.views import(
     home_screen_view,
-    signin_screen_view
+    signin_screen_view,
+    cajeros_view,
 )
 
 urlpatterns = [
@@ -28,5 +29,6 @@ urlpatterns = [
     path('', home_screen_view, name='home'),
     path('signin/', signin_screen_view, name='signin'),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("cajeros/base/", cajeros_view, name="base")
 
 ]

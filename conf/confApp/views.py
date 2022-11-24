@@ -7,3 +7,6 @@ def home_screen_view(request):
 
 def signin_screen_view(request):
     return render(request, "signin.html")
+
+def cajeros_view(request):
+    return render(request, "cajeros/base.html")
