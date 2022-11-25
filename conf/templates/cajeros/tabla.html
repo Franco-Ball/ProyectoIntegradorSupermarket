@@ -27,9 +27,13 @@
 
 <div class="limiter">
     <div class="container-table100">
+        <form class="d-flex" role="search" style="padding-bottom: 5%;">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark" type="button" onclick="addRow()">Add</button>
+        </form>
         <div class="wrap-table100">
             <div class="table100">
-                <table>
+                <table id="myTable">
                     <thead>
                         <tr class="table100-head">
                             <th class="column1">Date</th>
@@ -65,86 +69,6 @@
                             <td class="column5">2</td>
                             <td class="column6">$44.00</td>
                         </tr>
-                        <tr>
-                            <td class="column1">2017-09-25 23:06</td>
-                            <td class="column2">200392</td>
-                            <td class="column3">USB 3.0 Cable</td>
-                            <td class="column4">$10.00</td>
-                            <td class="column5">3</td>
-                            <td class="column6">$30.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-24 05:57</td>
-                            <td class="column2">200391</td>
-                            <td class="column3">Smartwatch 4.0 LTE Wifi</td>
-                            <td class="column4">$199.00</td>
-                            <td class="column5">6</td>
-                            <td class="column6">$1494.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-23 05:57</td>
-                            <td class="column2">200390</td>
-                            <td class="column3">Camera C430W 4k</td>
-                            <td class="column4">$699.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$699.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-22 05:57</td>
-                            <td class="column2">200389</td>
-                            <td class="column3">Macbook Pro Retina 2017</td>
-                            <td class="column4">$2199.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$2199.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-21 05:57</td>
-                            <td class="column2">200388</td>
-                            <td class="column3">Game Console Controller</td>
-                            <td class="column4">$999.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$999.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-19 05:57</td>
-                            <td class="column2">200387</td>
-                            <td class="column3">iPhone X 64Gb Grey</td>
-                            <td class="column4">$999.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$999.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-18 05:57</td>
-                            <td class="column2">200386</td>
-                            <td class="column3">iPhone X 64Gb Grey</td>
-                            <td class="column4">$999.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$999.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-22 05:57</td>
-                            <td class="column2">200389</td>
-                            <td class="column3">Macbook Pro Retina 2017</td>
-                            <td class="column4">$2199.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$2199.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-21 05:57</td>
-                            <td class="column2">200388</td>
-                            <td class="column3">Game Console Controller</td>
-                            <td class="column4">$999.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$999.00</td>
-                        </tr>
-                        <tr>
-                            <td class="column1">2017-09-19 05:57</td>
-                            <td class="column2">200387</td>
-                            <td class="column3">iPhone X 64Gb Grey</td>
-                            <td class="column4">$999.00</td>
-                            <td class="column5">1</td>
-                            <td class="column6">$999.00</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -168,5 +92,22 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-23581568-13');
+
+    function addRow() {
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+        var cell5 = row.insertCell(5);
+        cell1.innerHTML = "NEW CELL1";
+        cell2.innerHTML = "NEW CELL2";
+    }
+
+    function delRow() {
+        document.getElementById("myTable").deleteRow(0);
+    }
   </script>
 <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon="{&quot;rayId&quot;:&quot;76f9ec538923d2c4&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2022.11.3&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
