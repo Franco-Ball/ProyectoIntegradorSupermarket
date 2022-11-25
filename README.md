@@ -1,13 +1,48 @@
-# ProyectoIntegradorSupermarket
+# Supermarket
 
-Dominio del caso Supermarket:
-En este caso, una cadena de supermercado está solicitando un sistema de manejo de cajeros y sus turnos, sucursales, cajas, artículos y su stock.
+This is a Django Supermarket application 
 
-Nuestra solución propone realizar un servidor Django que muestra una página html, que a través de un registro de usuarios le permite a los cajeros ingresar a una página en la que pueden registrar las ventas e imprimir los tickets. También se ofrece una página con los productos más vendidos y ofertas del momento, disponible para todos los clientes.
+## Domain case
 
-Guía de instalación:
-Clonar el proyecto a una carpeta, y a través del uso de un entorno virtual hacer un -pip install requirements.txt- descargando así todas las librerías necesarias para correr el proyecto.
+In this case, a supermarket chain is requesting a system for managing cashiers and their shifts, branches, checkouts, articles and their stock.
 
-Uso del sistema:
-Para correr el servidor se deberá hacer uso del comando -./manage.py runserver- por consiguiente se deberá ingresar a la siguiente dirección "http://127.0.0.1:8000/".
-Ya habiendo ingresado a la dirección indicada, los cajeros pueden iniciar sesión e ingrsar a el apartado para poder empezar a registrar ventas.
+## Objective
+
+The supermarket's objective is to provide its services, sell products and earn the highest profits possible
+
+### Our solution
+
+Our solution proposes to make a Django server that displays an html page, which through a user registry allows cashiers to enter a page where they can register sales and print tickets. It also offers a page with the best-selling products and offers of the moment, available to all customers.
+
+### Installing
+
+Clone the project to a folder 
+
+```bash
+git clone https://github.com/Franco-Ball/ProyectoIntegradorSupermarket.git
+```
+and through the use of a virtual environment, type the following command:
+
+```bash
+pip install requirements.txt
+```
+thus installing all the necessary libraries to run the project.
+
+## Using the system
+
+To run the server you must use the command 
+
+```bash
+./manage.py runserver
+```
+therefore you must enter the following address ```http://127.0.0.1:8000/```. 
+Having already entered the indicated address, cashiers can log in and enter the section to start registering sales.
+
+## Authors
+
+  - Franco Ball, Santiago Carranza, Franco Morales 
+
+## Collaborators
+
+  - Requirements specification: Teodoro Reyna 
+  - Technical director: Nicolas Ledesma
