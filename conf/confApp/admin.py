@@ -33,20 +33,16 @@ class DetalleAdmin(admin.ModelAdmin):
     list_display = ("precioUnidad", "cantidad")
 admin.site.register(detalleVentas, DetalleAdmin)
 
-class VentasAdmin(admin.ModelAdmin):
-    list_display = ("fecha", "listaDetalleVenta")
-admin.site.register(Ventas, VentasAdmin)
+admin.site.register(Ventas)
 
 class AsignacionesAdmin(admin.ModelAdmin):
     list_display = ("fechaInicio", "fechaFin")
 admin.site.register(Asignaciones, AsignacionesAdmin)
 
-class CajasAdmin(admin.ModelAdmin):
-    list_display = ("estado", "listaDeAsignacion")
-admin.site.register(Cajas, CajasAdmin)
+admin.site.register(Cajas)
 
 class SucursalAdmin(admin.ModelAdmin):
-    list_display = ("telefono", "listaDeCaja", "direccion")
+    list_display = ("telefono", "direccion")
 admin.site.register(Sucursal, SucursalAdmin)
 
 class CajeroAdmin(admin.ModelAdmin):
