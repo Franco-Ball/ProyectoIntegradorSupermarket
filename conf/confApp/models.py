@@ -92,6 +92,7 @@ class Articulos(models.Model):
     nombre = models.CharField(max_length=50, default="Articulo")
     descripcion = models.CharField(max_length=200, default="Descripcion")
     precio = models.IntegerField( default=100)
+    imagen = models.ImageField(null =True, blank=True, upload_to='images/')
 
     def __str__(self):
         return f"{self.stock}, {self.nombre}, {self.descripcion}, {self.precio}"
