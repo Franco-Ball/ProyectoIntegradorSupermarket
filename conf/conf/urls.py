@@ -25,7 +25,9 @@ from confApp.views import(
     home_screen_view,
     signin_screen_view,
     cajeros_view,
-    cambio_DB
+    cambio_DB,
+    art_update,
+    home_screen_view2,
 )
 
 urlpatterns = [
@@ -34,7 +36,9 @@ urlpatterns = [
     path('signin/', signin_screen_view, name='signin'),
     path("accounts/", include("django.contrib.auth.urls")),
     path("cajeros/base/", cajeros_view, name="base"),
-    path("changeDB/", cambio_DB, name="changeDB")
+    path("changeDB/", cambio_DB, name="changeDB"),
+    path("updateArt/<articulo_id>", art_update, name="update-art"),
+    path('listArt/',home_screen_view2 , name='listado'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
