@@ -57,7 +57,7 @@ def cajeros_view(request):
         activo = len(list(Turnos.objects.all().filter(cajero__usuario=request.user , turno_activo = True).values())) > 0
         print(activo)
         #activo = True
-        return render(request, 'cajeros/base.html', {'form': form, 'activo':activo})
+        return render(request, 'cajeros/base.html', {'form': form, 'activo':activo, 'sucursal':sucursal})
     else:
         return redirect('http://127.0.0.1:8000/accounts/login/')
 
