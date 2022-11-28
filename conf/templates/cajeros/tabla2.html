@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Seleccionar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for x in articulo %}
+        <tr>
+            <td>{{x.nombre}}</td>
+            <td>
+              <input type="number" style="width: 57px; height: 30px; text-align: center;" id="input_cantidad" placeholder="0"  min="0" max="100">
+            </td>
+            <td>
+                <label id="label_monto">{{x.precio}}</label>
+            </td>
+            <td>
+                <button class="btn btn-success" type="button" onclick="addRow()">Add</button>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>

@@ -32,8 +32,8 @@ def cambio_DB(request):
 
 def cajeros_view(request):
     if request.user.is_active:
-
-        return render(request, "cajeros/base.html")
+        articulos = Articulos.objects.all
+        return render(request, "cajeros/base.html", {'articulo':articulos})
     else:
         return redirect('http://127.0.0.1:8000/accounts/login/')
 
