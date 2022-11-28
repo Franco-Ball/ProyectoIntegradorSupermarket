@@ -17,25 +17,36 @@ def signin_screen_view(request):
 
 def cambio_DB(request):
     submitted = False
-    if request.method == "POST":
-        form = ArticulosForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/changeDB?submitted=True')
+    if request.user.is_superuser:
+        
+        if request.method == "POST":
+            form = ArticulosForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/changeDB?submitted=True')
+        else:
+            form = ArticulosForm()
+        return render(request, "changeDB.html", {'form':form, 'submitted':submitted})
     else:
-        form = ArticulosForm()
-    return render(request, "changeDB.html", {'form':form, 'submitted':submitted})
+        return redirect('http://127.0.0.1:8000/accounts/login/')
 
 def cajeros_view(request):
-    return render(request, "cajeros/base.html")
+    if request.user.is_active:
+
+        return render(request, "cajeros/base.html")
+    else:
+        return redirect('http://127.0.0.1:8000/accounts/login/')
 
 def art_update(request, articulo_id):
-    art = Articulos.objects.get(pk=articulo_id)
-    form = ArticulosForm(request.POST, request.FILES or None, instance =art)
-    if form.is_valid():
-            form.save()
-            return redirect('listado')
+     if request.user.is_superuser:
+        art = Articulos.objects.get(pk=articulo_id)
+        form = ArticulosForm(request.POST, request.FILES or None, instance =art)
+        if form.is_valid():
+                form.save()
+                return redirect('http://127.0.0.1:8000/accounts/login/')
 
+        
+        return render(request, "updateArt.html", {'art': art, 'form':form})
     
-    return render(request, "updateArt.html", {'art': art, 'form':form})
-
+     else:
+        return redirect('listado')
