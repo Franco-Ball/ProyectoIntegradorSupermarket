@@ -6636,6 +6636,11 @@ textarea.form-control-lg {
   opacity: 0.25;
 }
 
+.center {
+  text-align: center;
+  width: 100%;
+}
+
 .align-baseline {
   vertical-align: baseline !important;
 }
