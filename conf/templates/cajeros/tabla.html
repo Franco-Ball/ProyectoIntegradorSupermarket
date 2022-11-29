@@ -27,8 +27,9 @@
 
 <div class="limiter" style="align-items:center; justify-content:center">
     <div class="container-table100">
-        <form class="d-flex" role="search" style="padding-bottom: 5%;" method="POST">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Searched">
+        <form class="d-flex" role="search" style="padding-bottom: 5%;" method=POST>
+            {% csrf_token %}
+            <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="searched">
             <button class="btn btn-outline-dark" type="button" onclick="addRow()">Add</button>
         </form>
         <div class="wrap-table100">

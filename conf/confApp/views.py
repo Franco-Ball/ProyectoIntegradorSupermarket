@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import ArticulosForm
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 # Create your views here.
 def home_screen_view(request):
@@ -33,7 +34,17 @@ def cambio_DB(request):
 def cajeros_view(request):
     if request.user.is_active:
         articulos = Articulos.objects.all
-        return render(request, "cajeros/base.html", {'articulo':articulos})
+        searched = None
+        if request.method=="POST":
+            searched = request.POST['searched']
+            if searched:
+                searched = Articulos.objects.filter(
+                Q(nombre__icontains = searched) |
+                Q(precio__icontains = searched)
+                ).distinct()
+        
+        #search_result = Articulos.objects.filter(nombre__icontains=search)
+        return render(request, "cajeros/base.html", {'articulo':articulos, 'searched':searched})
     else:
         return redirect('http://127.0.0.1:8000/accounts/login/')
 
