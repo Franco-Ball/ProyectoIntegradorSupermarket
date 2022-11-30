@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
-from .forms import ArticulosForm
+from .forms import ArticulosForm, ArticulosForm2
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 
@@ -51,7 +51,7 @@ def cajeros_view(request):
 def art_update(request, articulo_id):
      if request.user.is_superuser:
         art = Articulos.objects.get(pk=articulo_id)
-        form = ArticulosForm(request.POST or None, instance =art)
+        form = ArticulosForm2(request.POST or None, instance =art)
         if form.is_valid():
                 form.save()
                 return redirect('http://127.0.0.1:8000/listArt/')
