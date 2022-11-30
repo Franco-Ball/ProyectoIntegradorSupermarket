@@ -19,19 +19,24 @@
     
     <link rel="stylesheet" type="text/css" href="{% static 'confApp/csss/tableutil1.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'confApp/csss/table1.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'styles-principal.css' %}" >
+
     <meta name="robots" content="noindex, follow">
 </head>
 
 
 
 <div class="limiter" style="align-items:center; justify-content:center">
-    <div class="container-table100">
-        <form class="d-flex" role="search" style="padding-bottom: 5%;" method=POST>
-            {% csrf_token %}
-            <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="searched">
-            <button class="btn btn-outline-dark" type="search">Search</button>
-        </form>
+    <div class="container-table100" style="background:#eeeeee;">
+        <!--Search-->
+        <div class="center mx-auto container">
+            <form class="d-flex" role="search" style="padding-bottom: 5%;" method=POST>
+                {% csrf_token %}
+                <input class="form-control me-2" style="background:white;" type="text" placeholder="Search" aria-label="Search" name="searched">
+                <button class="btn" style="background-color:white;" type="button" onclick="addRow()">Add</button>
+            </form>
+        </div>
+        <!--Table-->
         <div class="wrap-table100">
             <div class="table100">
                 <table id="myTable">
@@ -74,10 +79,12 @@
                 </table>
             </div>
         </div>
-        <div>
+        <!--Total price print-->
+        <div class="center">
             <h1 style="padding-top:5%;">Total a pagar</h1>
         </div>
     </div>
+    <!--Buttons-->
     <div style="align-items: center;">
         <button class="btn btn-success" type="button" onclick="">Pagar</button>
         <button class="btn btn-danger" type="button" onclick="">Cancelar</button>
