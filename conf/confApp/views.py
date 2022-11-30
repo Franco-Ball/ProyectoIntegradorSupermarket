@@ -51,10 +51,10 @@ def cajeros_view(request):
 def art_update(request, articulo_id):
      if request.user.is_superuser:
         art = Articulos.objects.get(pk=articulo_id)
-        form = ArticulosForm(request.POST, request.FILES or None, instance =art)
+        form = ArticulosForm(request.POST or None, instance =art)
         if form.is_valid():
                 form.save()
-                return redirect('http://127.0.0.1:8000/accounts/login/')
+                return redirect('http://127.0.0.1:8000/listArt/')
 
         
         return render(request, "updateArt.html", {'art': art, 'form':form})
