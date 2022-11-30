@@ -30,7 +30,7 @@
         <form class="d-flex" role="search" style="padding-bottom: 5%;" method=POST>
             {% csrf_token %}
             <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="searched">
-            <button class="btn btn-outline-dark" type="button" onclick="addRow()">Add</button>
+            <button class="btn btn-outline-dark" type="search">Search</button>
         </form>
         <div class="wrap-table100">
             <div class="table100">
@@ -101,7 +101,10 @@
 
     gtag('config', 'UA-23581568-13');
 
-    function addRow() {
+    function addRow(codigo) {
+        var article_table = document.getElementById("article_table");
+        var i;
+
         var table = document.getElementById("myTable");
         var row = table.insertRow(1);
         var cell1 = row.insertCell(0);
@@ -110,8 +113,26 @@
         var cell4 = row.insertCell(3);
         var cell4 = row.insertCell(4);
         var cell5 = row.insertCell(5);
-        cell1.innerHTML = "NEW CELL1";
-        cell2.innerHTML = "NEW CELL2";
+
+        let cantidad = document.getElementById("input_cantidad").value;
+        let precioUnitario = document.getElementById("precio").innerText;
+        let name = document.getElementById("name").innerText;
+        let code = document.getElementById("code").innerText;
+        var checkbox = document.querySelector("input[name=checkbox]");
+        var checked = checkbox.checked;
+
+        if(checked){
+            cell1.innerHTML = code;
+            cell2.innerHTML = precioUnitario;
+            cell3.innerHTML = name;
+            cell5.innerHTML = cantidad;
+        }
+
+        
+
+        
+
+
     }
 
     function delRow() {
