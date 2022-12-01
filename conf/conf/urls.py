@@ -28,6 +28,7 @@ from confApp.views import(
     cambio_DB,
     art_update,
     home_screen_view2,
+    cargar_turnos,
 )
 
 urlpatterns = [
@@ -39,6 +40,7 @@ urlpatterns = [
     path("changeDB/", cambio_DB, name="changeDB"),
     path("updateArt/<articulo_id>", art_update, name="update-art"),
     path('listArt/',home_screen_view2 , name='listado'),
+    path('turnos/', cargar_turnos , name='turnos'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

@@ -14,11 +14,8 @@ from .models import Cajero
 
 
 # Register your models here.
-class TurnosAdmin(admin.ModelAdmin):
-    list_display = ("horaInicio", "horaFin")
-    list_filter = ("horaInicio", )
 
-admin.site.register(Turnos, TurnosAdmin)
+admin.site.register(Turnos)
 
 class DireccionesAdmin(admin.ModelAdmin):
     list_display = ("calle", "altura")
@@ -46,5 +43,5 @@ class SucursalAdmin(admin.ModelAdmin):
 admin.site.register(Sucursal, SucursalAdmin)
 
 class CajeroAdmin(admin.ModelAdmin):
-    list_display = ("dni", "nombre", "apellido", "direccion", "sucursal", "turnoTrabajo")
+    list_display = ("dni", "nombre", "apellido", "direccion", "sucursal")
 admin.site.register(Cajero, CajeroAdmin)

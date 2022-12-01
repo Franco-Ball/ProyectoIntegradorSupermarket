@@ -1,14 +1,5 @@
 from django.db import models
-
-class Turnos(models.Model):
-    detalle = models.CharField(max_length=30)
-    horaInicio = models.IntegerField( default=8)
-    horaFin = models.IntegerField( default=20)
-
-    def __str__(self):
-        return f"{self.horaInicio}, {self.horaFin}"
-    class Meta:
-        ordering = ("horaInicio", "horaFin")
+from django.conf import settings
 
 class Direcciones(models.Model):
     calle = models.CharField(max_length=30, default="Calle")
@@ -44,6 +35,7 @@ class Cajero(models.Model):
     nombre = models.CharField(max_length = 30, default="Nombre")
     apellido = models.CharField(max_length = 30, default="Apellido")
     nacimiento = models.DateField(default= "2022-09-06")
+    usuario =models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     direccion = models.ForeignKey(
         Direcciones,
         on_delete=models.CASCADE, default=1
@@ -52,10 +44,6 @@ class Cajero(models.Model):
     telefono = models.CharField(max_length = 20, default="3513897259")
     ingresoEmpresa = models.DateFielddeadefault= ("2022-09-06")
     email = models.CharField(max_length = 40, default="mailfalso@gmail.com")
-    turnoTrabajo = models.ForeignKey(
-        Turnos,
-        on_delete=models.CASCADE, default=1
-    )
     sucursal = models.ForeignKey(
         Sucursal,
         on_delete=models.CASCADE, default=1
@@ -63,6 +51,16 @@ class Cajero(models.Model):
     def __str__(self):
         return f"{self.dni}, {self.nombre}, {self.apellido}"
 
+class Turnos(models.Model):
+    detalle = models.CharField(max_length=30)
+    horaInicio = models.DateTimeField()
+    horaFin = models.DateTimeField(null = True)
+    cajero= models.ForeignKey(Cajero,on_delete=models.CASCADE, null=True,blank=True)
+    turno_activo = models.BooleanField(default=True)
+    def __str__(self):
+        return f"{self.horaInicio}, {self.horaFin}"
+    class Meta:
+        ordering = ("horaInicio", "horaFin")
 class Asignaciones(models.Model):
     fechaInicio = models.DateField(default= "2022-09-06")
     fechaFin = models.DateField(default= "2022-09-06")
