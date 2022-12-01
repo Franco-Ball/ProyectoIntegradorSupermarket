@@ -108,10 +108,17 @@
 
     gtag('config', 'UA-23581568-13');
 
-    function addRow(codigo) {
-        var article_table = document.getElementById("article_table");
-        var i;
+    function asd(){
+        
+    }
 
+    function checkFun(id) {
+        //Guardado de datos
+        let cantidad = document.getElementById("input_cantidad"+id).value;
+        let precioUnitario = document.getElementById("precio"+id).innerText;
+        let name = document.getElementById("name"+id).innerText;
+        let code = document.getElementById("code"+id).innerText;
+        //Addeo de la Row
         var table = document.getElementById("myTable");
         var row = table.insertRow(1);
         var cell1 = row.insertCell(0);
@@ -120,26 +127,10 @@
         var cell4 = row.insertCell(3);
         var cell4 = row.insertCell(4);
         var cell5 = row.insertCell(5);
-
-        let cantidad = document.getElementById("input_cantidad").value;
-        let precioUnitario = document.getElementById("precio").innerText;
-        let name = document.getElementById("name").innerText;
-        let code = document.getElementById("code").innerText;
-        var checkbox = document.querySelector("input[name=checkbox]");
-        var checked = checkbox.checked;
-
-        if(checked){
-            cell1.innerHTML = code;
-            cell2.innerHTML = precioUnitario;
-            cell3.innerHTML = name;
-            cell5.innerHTML = cantidad;
-        }
-
-        
-
-        
-
-
+        cell1.innerHTML = code;
+        cell2.innerHTML = precioUnitario;
+        cell3.innerHTML = name;
+        cell5.innerHTML = cantidad;
     }
 
     function delRow() {
