@@ -39,6 +39,7 @@ def cajeros_view(request):
         if request.method=="POST":
             turno_id = list(Turnos.objects.all().filter(cajero__usuario=request.user , turno_activo = True).values())[0]['id']
             turno = Turnos.objects.get(id = turno_id)
+            activo = len(list(Turnos.objects.all().filter(cajero__usuario=request.user , turno_activo = True).values())) > 0
             searched = request.POST['searched']
             if searched:
                 searched = Articulos.objects.filter(
@@ -47,7 +48,7 @@ def cajeros_view(request):
                 ).distinct()
         
         #search_result = Articulos.objects.filter(nombre__icontains=search)
-            return render(request, "cajeros/base.html", {'articulo':articulos, 'searched':searched})
+            return render(request, "cajeros/base.html", {'articulo':articulos, 'searched':searched, 'activo':activo})
         else:
             form = TurnosForm()
             db = Turnos.objects.all()
