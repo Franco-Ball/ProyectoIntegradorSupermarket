@@ -93,7 +93,10 @@
     gtag('config', 'UA-23581568-13');
 
     var array=[];
+<<<<<<< HEAD
     var montototal = 0;
+=======
+>>>>>>> 375dda6 (big fix)
 
     function checkFun(id) {
         //Guardado de datos
@@ -101,6 +104,7 @@
         let precioUnitario = document.getElementById("precio"+id).innerText;
         let name = document.getElementById("name"+id).innerText;
         let code = document.getElementById("code"+id).innerText;
+<<<<<<< HEAD
         //Guardado de objeto y pusheo
         const article = {codigo:code, nombre:name, precio:precioUnitario, cant:cantidad};
         array.push(article);
@@ -110,6 +114,12 @@
         var hmonto = document.getElementById("monto");
         hmonto.innerText = "Total a Pagar: $" + montototal;
 
+=======
+
+        const article = {codigo:code, nombre:name, precio:precioUnitario, cant:cantidad};
+        array.push(article);
+        
+>>>>>>> 375dda6 (big fix)
         /*
         array.push(cantidad);
         array.push(precioUnitario);
