@@ -96,9 +96,7 @@
 
     gtag('config', 'UA-23581568-13');
 
-    function asd(){
-        
-    }
+    var array=[];
 
     function checkFun(id) {
         //Guardado de datos
@@ -106,6 +104,26 @@
         let precioUnitario = document.getElementById("precio"+id).innerText;
         let name = document.getElementById("name"+id).innerText;
         let code = document.getElementById("code"+id).innerText;
+
+        const article = {codigo:code, nombre:name, precio:precioUnitario, cant:cantidad};
+        array.push(article);
+        
+        /*
+        array.push(cantidad);
+        array.push(precioUnitario);
+        array.push(name);
+        array.push(code);
+        */
+        for(let i = 0; i < array.length; i++){
+            console.log(array[i]);
+        }
+        //console.log(object);
+        /*
+        const doc = new jsPDF();
+        doc.text(10,10, "hola");
+        doc.save("hellowWorld.pdf")
+        */
+
         //Addeo de la Row
         var table = document.getElementById("myTable");
         var row = table.insertRow(1);
