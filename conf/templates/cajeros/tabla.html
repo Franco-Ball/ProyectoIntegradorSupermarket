@@ -143,21 +143,14 @@
 
     function convert() {
 console.log("hola")
-<<<<<<< HEAD
 let cajero = document.getElementById("cajero").innerText;
 let sucursal = document.getElementById("sucursal").innerText;
-=======
-
->>>>>>> d42b159 (Printing of pdfs)
 
 const doc = new jsPDF()
 doc.autoTable({ html: '#myTable' })
 doc.text(20, 70, 'Monto total: ' + montototal);
-<<<<<<< HEAD
 doc.text(20, 80, '' + cajero);
 doc.text(20, 90, '' + sucursal);
-=======
->>>>>>> d42b159 (Printing of pdfs)
 doc.save('table.pdf')
 }
 
