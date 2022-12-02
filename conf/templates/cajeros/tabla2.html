@@ -1,0 +1,28 @@
+<table class="table" id="article_table">
+    <thead style="color:whitesmoke;">
+      <tr>
+        <th>Codigo</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Seleccionar</th>
+      </tr>
+    </thead>
+    <tbody id="article_table_body">
+      {% for x in searched %}
+        <tr>
+            <td><label id="code{{x.codigo}}">{{x.codigo}}</label></td>
+            <td><label id="name{{x.codigo}}">{{x.nombre}}</label></td>
+            <td>
+              <input type="number" style="width: 57px; height: 30px; text-align: center;" id="input_cantidad{{x.codigo}}" placeholder="0"  min="0" max="100">
+            </td>
+            <td>
+                <label id="precio{{x.codigo}}">{{x.precio}}</label>
+            </td>
+            <td>
+              <button class="btn btn-success" type="button" onclick="checkFun('{{ x.codigo }}')">Add</button>
+            </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>

@@ -15,7 +15,33 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from django.urls import path, include
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+from confApp.views import(
+    home_screen_view,
+    signin_screen_view,
+    cajeros_view,
+    cambio_DB,
+    art_update,
+    home_screen_view2,
+    cargar_turnos,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', home_screen_view, name='home'),
+    path('signin/', signin_screen_view, name='signin'),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("cajeros/base/", cajeros_view, name="base"),
+    path("changeDB/", cambio_DB, name="changeDB"),
+    path("updateArt/<articulo_id>", art_update, name="update-art"),
+    path('listArt/',home_screen_view2 , name='listado'),
+    path('turnos/', cargar_turnos , name='turnos'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
