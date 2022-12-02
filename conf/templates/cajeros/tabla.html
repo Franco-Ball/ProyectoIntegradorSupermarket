@@ -48,23 +48,12 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+
             </tbody>
           </table>
         <!--Total price print-->
@@ -74,7 +63,7 @@
     </div>
     <!--Buttons-->
     <div style="align-items: center;">
-        <button class="btn btn-success" type="button" onclick="">Pagar</button>
+        <button class="btn btn-success" type="button" onclick="convert()">Pagar</button>
         <button class="btn btn-danger" type="button" onclick="window.location.reload();">Cancelar</button>
     </div>
 </div>
@@ -85,6 +74,9 @@
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
 <script src="vendor/select2/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
+
 
 <script src="js/main.js"></script>
 
@@ -141,7 +133,20 @@
         cell4.innerHTML = precioUnitario;
         cell2.innerHTML = name;
         cell3.innerHTML = cantidad;
+        
+        
     }
+
+    function convert() {
+console.log("hola")
+
+
+const doc = new jsPDF()
+doc.autoTable({ html: '#myTable' })
+doc.text(20, 70, 'Monto total: ' + montototal);
+doc.save('table.pdf')
+}
+
     function delRow() {
         document.getElementById("myTable").deleteRow(0);
     }
