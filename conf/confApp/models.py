@@ -35,7 +35,7 @@ class Cajero(models.Model):
     nombre = models.CharField(max_length = 30, default="Nombre")
     apellido = models.CharField(max_length = 30, default="Apellido")
     nacimiento = models.DateField(default= "2022-09-06")
-    usuario =models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, default=1)
     direccion = models.ForeignKey(
         Direcciones,
         on_delete=models.CASCADE, default=1
@@ -61,6 +61,7 @@ class Turnos(models.Model):
         return f"{self.horaInicio}, {self.horaFin}"
     class Meta:
         ordering = ("horaInicio", "horaFin")
+        
 class Asignaciones(models.Model):
     fechaInicio = models.DateField(default= "2022-09-06")
     fechaFin = models.DateField(default= "2022-09-06")
