@@ -33,7 +33,15 @@ from confApp.views import(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', home_screen_view, name='home'),
+    path('signin/', signin_screen_view, name='signin'),
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("cajeros/base/", cajeros_view, name="base"),
+    path("changeDB/", cambio_DB, name="changeDB"),
+    path("updateArt/<articulo_id>", art_update, name="update-art"),
+    path('listArt/',home_screen_view2 , name='listado'),
+    path('turnos/', cargar_turnos , name='turnos'),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
