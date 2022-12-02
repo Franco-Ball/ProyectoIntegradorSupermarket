@@ -23,8 +23,12 @@
 
     <meta name="robots" content="noindex, follow">
 </head>
-
-
+{% if user.is_authenticated %}
+    <p id="cajero">Cajero: {{ user.get_username }}</p>
+{%endif%}
+{% for x in sucursal%}
+<p id="sucursal">Sucursal: {{ x.direccion }}</p>
+{%endfor%}
 
 <div class="limiter" style="align-items:center; justify-content:center">
     <div class="container-table100" style="background:#eeeeee;">
@@ -139,11 +143,14 @@
 
     function convert() {
 console.log("hola")
-
+let cajero = document.getElementById("cajero").innerText;
+let sucursal = document.getElementById("sucursal").innerText;
 
 const doc = new jsPDF()
 doc.autoTable({ html: '#myTable' })
 doc.text(20, 70, 'Monto total: ' + montototal);
+doc.text(20, 80, '' + cajero);
+doc.text(20, 90, '' + sucursal);
 doc.save('table.pdf')
 }
 
