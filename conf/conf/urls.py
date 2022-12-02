@@ -15,10 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from confApp import views
+from django.conf.urls import include
+from django.urls import path, include
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+from confApp.views import(
+    home_screen_view,
+    signin_screen_view,
+    cajeros_view,
+    cambio_DB,
+    art_update,
+    home_screen_view2,
+    cargar_turnos,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

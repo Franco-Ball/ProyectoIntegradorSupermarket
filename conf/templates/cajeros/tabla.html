@@ -1,0 +1,161 @@
+{% load static %}
+
+<head>
+    <title>Table V01</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico">
+    
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+    
+    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'confApp/csss/tableutil1.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'confApp/csss/table1.css' %}">
+    <link rel="stylesheet" href="{% static 'styles-principal.css' %}" >
+
+    <meta name="robots" content="noindex, follow">
+</head>
+{% if user.is_authenticated %}
+    <p id="cajero">Cajero: {{ user.get_username }}</p>
+{%endif%}
+{% for x in sucursal%}
+<p id="sucursal">Sucursal: {{ x.direccion }}</p>
+{%endfor%}
+
+<div class="limiter" style="align-items:center; justify-content:center">
+    <div class="container-table100" style="background:#eeeeee;">
+        <!--Search-->
+        <div class="center mx-auto container">
+            <form class="d-flex" role="search" style="padding-bottom: 5%;" method=POST>
+                {% csrf_token %}
+                <input class="form-control me-2" style="background:white;" type="text" placeholder="Search" aria-label="Search" name="searched">
+                <button class="btn" style="background-color:white;" type="button" onclick="addRow()">Add</button>
+            </form>
+        </div>
+        <!--Table-->
+        <table class="table" id="myTable">
+            <thead>
+              <tr>
+                <th scope="col" style="color:whitesmoke;">Código</th>
+                <th scope="col" style="color:whitesmoke;">Nombre</th>
+                <th scope="col" style="color:whitesmoke;">Cantidad</th>
+                <th scope="col" style="color:whitesmoke;">Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+            </tbody>
+          </table>
+        <!--Total price print-->
+        <div class="center">
+            <h1 id="monto" style="padding-top:5%;">Total a pagar</h1>
+        </div>
+    </div>
+    <!--Buttons-->
+    <div style="align-items: center;">
+        <button class="btn btn-success" type="button" onclick="convert()">Pagar</button>
+        <button class="btn btn-danger" type="button" onclick="window.location.reload();">Cancelar</button>
+    </div>
+</div>
+    
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    
+<script src="vendor/bootstrap/js/popper.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<script src="vendor/select2/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<script src="https://unpkg.com/jspdf-autotable@3.5.22/dist/jspdf.plugin.autotable.js"></script>
+
+
+<script src="js/main.js"></script>
+
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+
+    var array=[];
+    var montototal = 0;
+
+    function checkFun(id) {
+        //Guardado de datos
+        let cantidad = document.getElementById("input_cantidad"+id).value;
+        let precioUnitario = document.getElementById("precio"+id).innerText;
+        let name = document.getElementById("name"+id).innerText;
+        let code = document.getElementById("code"+id).innerText;
+        //Guardado de objeto y pusheo
+        const article = {codigo:code, nombre:name, precio:precioUnitario, cant:cantidad};
+        array.push(article);
+        
+        //Calculo del monto
+        montototal += cantidad * precioUnitario;
+        var hmonto = document.getElementById("monto");
+        hmonto.innerText = "Total a Pagar: $" + montototal;
+
+        /*
+        array.push(cantidad);
+        array.push(precioUnitario);
+        array.push(name);
+        array.push(code);
+        */
+        for(let i = 0; i < array.length; i++){
+            console.log(array[i]);
+        }
+        //console.log(object);
+        /*
+        const doc = new jsPDF();
+        doc.text(10,10, "hola");
+        doc.save("hellowWorld.pdf")
+        */
+
+        //Addeo de la Row
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        cell1.innerHTML = code;
+        cell4.innerHTML = precioUnitario;
+        cell2.innerHTML = name;
+        cell3.innerHTML = cantidad;
+        
+        
+    }
+
+    function convert() {
+console.log("hola")
+let cajero = document.getElementById("cajero").innerText;
+let sucursal = document.getElementById("sucursal").innerText;
+
+const doc = new jsPDF()
+doc.autoTable({ html: '#myTable' })
+doc.text(20, 70, 'Monto total: ' + montototal);
+doc.text(20, 80, '' + cajero);
+doc.text(20, 90, '' + sucursal);
+doc.save('table.pdf')
+}
+
+    function delRow() {
+        document.getElementById("myTable").deleteRow(0);
+    }
+  </script>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon="{&quot;rayId&quot;:&quot;76f9ec538923d2c4&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;,&quot;version&quot;:&quot;2022.11.3&quot;,&quot;si&quot;:100}" crossorigin="anonymous"></script>
