@@ -23,17 +23,16 @@
 
     <meta name="robots" content="noindex, follow">
 </head>
-{% if user.is_authenticated %}
-    <p id="cajero">Cajero: {{ user.get_username }}</p>
-{%endif%}
-{% for x in sucursal%}
-<p id="sucursal">Sucursal: {{ x.direccion }}</p>
-{%endfor%}
-
 <div class="limiter" style="align-items:center; justify-content:center">
     <div class="container-table100" style="background:#eeeeee;">
         <!--Search-->
         <div class="center mx-auto container">
+          {% if user.is_authenticated %}
+          <p id="cajero">Cajero: {{ user.get_username }}</p>
+          {%endif%}
+          {% for x in sucursal%}
+          <p id="sucursal">Sucursal: {{ x.direccion }}</p>
+          {%endfor%}
             <form class="d-flex" role="search" style="padding-bottom: 5%;" method=POST>
                 {% csrf_token %}
                 <input class="form-control me-2" style="background:white;" type="text" placeholder="Search" aria-label="Search" name="searched">
