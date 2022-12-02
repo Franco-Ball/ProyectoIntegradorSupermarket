@@ -18,14 +18,18 @@
           <li>
             <a class="nav-link" href="http://127.0.0.1:8000/listArt">Listar articulos</a>
           </li>
+          {% if user.is_authenticated %}
           <li>
+            <a class="nav-link" href="http://127.0.0.1:8000/accounts/logout">Log out</a>
+          </li>
+          {% else %}
+          <li>
+          <a class="nav-link" href="http://127.0.0.1:8000/accounts/login">Log in</a>
+        </li>
+          {%endif%}
             <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>
