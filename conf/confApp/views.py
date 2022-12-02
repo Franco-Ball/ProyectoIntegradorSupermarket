@@ -35,6 +35,7 @@ def cambio_DB(request):
 def cajeros_view(request):
     if request.user.is_active:
         articulos = Articulos.objects.all
+        sucursal = Sucursal.objects.all
         searched = None
         if request.method=="POST":
             turno_id = list(Turnos.objects.all().filter(cajero__usuario=request.user , turno_activo = True).values())[0]['id']
@@ -48,7 +49,7 @@ def cajeros_view(request):
                 ).distinct()
         
         #search_result = Articulos.objects.filter(nombre__icontains=search)
-            return render(request, "cajeros/base.html", {'articulo':articulos, 'searched':searched, 'activo':activo})
+            return render(request, "cajeros/base.html", {'articulo':articulos, 'searched':searched, 'activo':activo, 'sucursal':sucursal})
         else:
             form = TurnosForm()
             db = Turnos.objects.all()
