@@ -69,13 +69,13 @@
           </table>
         <!--Total price print-->
         <div class="center">
-            <h1 style="padding-top:5%;">Total a pagar</h1>
+            <h1 id="monto" style="padding-top:5%;">Total a pagar</h1>
         </div>
     </div>
     <!--Buttons-->
     <div style="align-items: center;">
         <button class="btn btn-success" type="button" onclick="">Pagar</button>
-        <button class="btn btn-danger" type="button" onclick="">Cancelar</button>
+        <button class="btn btn-danger" type="button" onclick="window.location.reload();">Cancelar</button>
     </div>
 </div>
     
@@ -97,6 +97,7 @@
     gtag('config', 'UA-23581568-13');
 
     var array=[];
+    var montototal = 0;
 
     function checkFun(id) {
         //Guardado de datos
@@ -104,10 +105,15 @@
         let precioUnitario = document.getElementById("precio"+id).innerText;
         let name = document.getElementById("name"+id).innerText;
         let code = document.getElementById("code"+id).innerText;
-
+        //Guardado de objeto y pusheo
         const article = {codigo:code, nombre:name, precio:precioUnitario, cant:cantidad};
         array.push(article);
         
+        //Calculo del monto
+        montototal += cantidad * precioUnitario;
+        var hmonto = document.getElementById("monto");
+        hmonto.innerText = "Total a Pagar: $" + montototal;
+
         /*
         array.push(cantidad);
         array.push(precioUnitario);
